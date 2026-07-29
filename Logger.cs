@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.IO;
 
+
+
 namespace RayLibEngine;
 
 public enum LogLevel
@@ -159,7 +161,6 @@ static class Logger
 
         Console.WriteLine($"Target Set at {target}");
         return target;
-
 
     }
 
