@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 
 
-namespace RayLibEngine
+namespace RayLibEngine.Core
 {
     public static class Clock
     {

@@ -1,8 +1,9 @@
 ﻿using Raylib_cs;
+using RayLibEngine.Core;
 using System;
 using System.Diagnostics;
 
-using static RayLibEngine.Logger;
+using static RayLibEngine.Core.Logger;
 
 namespace RayLibEngine;
 

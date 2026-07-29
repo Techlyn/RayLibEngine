@@ -6,7 +6,7 @@ using System.IO;
 
 
 
-namespace RayLibEngine;
+namespace RayLibEngine.Core;
 
 public enum LogLevel
 {
