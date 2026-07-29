@@ -1,76 +1,66 @@
 ﻿//using Raylib_cs;
 //using System;
 //using System.Collections.Generic;
-//using System.Text;
-//using System.Text.RegularExpressions;
-//using static RayLibEngine.Logger;
+using RayLibEngine.Core;
+using System.Text;
+using System.Text.RegularExpressions;
+using static RayLibEngine.Core.Logger;
 
-//namespace RayLibEngine;
+namespace RayLibEngine;
 
-//static class Engine
-//{
-    
-//    const string CLASS_NAME = "Engine";
-
-//    private static bool game_over = false;
-//    private static int FRAME_TIME_DEFAULT = 60;
-
-    
-//    static Engine() 
-//    {
-//        WriteLog(CLASS_NAME, LogLevel.LOG_INFO, $"Engine Started");
-//    }
+static class Engine
+{
+    private static double FIXED_FRAME_RATE = 60;
+    private static double fixedDeltaTime = 1 / FIXED_FRAME_RATE;
 
 
-//    static public int StartUp()
-//    {
-//        Logger.StartUp();
-//        WorldManager.StartUp();
-//        DisplayManager.StartUp();
-
-//        BoundingBox boundary = new Box();
-//        boundary.setHoriziontal(DisplayManager.getHorizontal());
-//        boundary.setVertical(DisplayManager.getVertical());
-//        WorldManager.setBoundary(boundary);
-//        WorldManager.setView(ValueMatch.getBoundry());
-
-//        timeBeginPeriod(1);
-
-//        WriteLog(LogLevel.LOG_INFO, "Game Manager Start");
-//        return 0;
-//    }
-
-//    static public void Shutdown()
-//    {
-//        DisplayManager.Shutdown();
-//        WorldManager.Shutdown();
-
-//        SetGameOver();
-//        timeEndPeriod(1);
-//    }
+    private static double accumulator = 0;
+    private static int updateCount = 0;
+    private static int renderCount = 0;
 
 
-//    static public void Run()
-//    {
-//        Clock clock;
+    public static void Run()
+    {
+        Clock clock = new Clock();
 
-//        long adjust_time = 0;
-//        long count = 0;
+      
+
+        int timeElapsed = 20;
+        while (clock.TotalTime < timeElapsed)
+        {
+            clock.Tick();
+            double dt = clock.DeltaTime;
+
+            if (dt > 0.1) dt = 0.1; // dt cap
+
+            TestUpdate(dt);
+            TestRender();
+
+        }
+        WriteLog(LogLevel.LOG_DEBUG, $"Time Elapsed: {clock.TotalTime} Frame updates: {updateCount}");
+        WriteLog(LogLevel.LOG_DEBUG, $"Time Elapsed: {clock.TotalTime} Frame renders: {renderCount}");
+
+    }
 
 
-//        while (!game_over)
-//        {
-//            clock.delta();
+    private static void TestUpdate(double deltaTime)
+    {
+        
 
-//            EventStep es;
-//            es.SetStepCount(count);
-//            OnEvent(es);
-//            InputHandler.GetInput();
-//            WorldManager.Update();
-//            WorldManager.Draw();
+        accumulator += deltaTime;
 
-//        }
-//    }
+        while (accumulator >= fixedDeltaTime)
+        {
+            updateCount++;
+            accumulator -= fixedDeltaTime;
+        } 
+
+    }
+
+    private static void TestRender()
+    {
+        renderCount++;
+    }
 
 
-//}
+}
