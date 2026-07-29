@@ -18,21 +18,5 @@ namespace RayLibEngine.Core
             _previousTicks = _stopwatch.ElapsedTicks;
         }
        
-
-
-        static public long delta()
-        {
-            return timer.StartNow();
-        }
-
-        static public long split()
-        {
-            return timer.Stop();
-        }
-
-        static public long getTick()
-        {
-            return elapsedTimeTick;
-        }
     }
 }

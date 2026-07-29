@@ -155,7 +155,7 @@ static class Logger
 
         if (!Directory.Exists(target))
         {
-            WriteLog($"Attempting to create Directory at {target}");
+            Console.WriteLine($"Attempting to create Directory at {target}");
             Directory.CreateDirectory(target);
         }
 
