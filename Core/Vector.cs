@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RayLibEngine.Core
+﻿namespace RayLibEngine.Core
 {
     public class Vector
     {
@@ -61,7 +57,7 @@ namespace RayLibEngine.Core
         public static bool operator >=(Vector a, Vector b) => (a.x >= b.x) && (a.y >= b.y);
         public static bool operator ==(Vector a, Vector b)
         {
-            if(a is null)
+            if (a is null)
             {
                 return b is null;
             }
@@ -70,7 +66,7 @@ namespace RayLibEngine.Core
 
         public static bool operator !=(Vector a, Vector b)
         {
-            if(a is null)
+            if (a is null)
             {
                 return b is not null;
             }
@@ -80,6 +76,6 @@ namespace RayLibEngine.Core
         public bool Equals(Vector? other) => other is not null && other == this;
         public override bool Equals(object? obj) => Equals(obj as Vector);
 
-        
+
     }
 }

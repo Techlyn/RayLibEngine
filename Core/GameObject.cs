@@ -14,40 +14,43 @@ namespace RayLibEngine.Core
         SPECTRAL
     }
 
-    internal class Object
+    internal class GameObject
     {
         private static int id_count = 0;
+
         private int m_id;
-        private string m_type;
-        private Vector m_position = new Vector();
-
         private int m_altitude = 1;
-        private Vector m_direction = new Vector();
-        private float m_speed = 0;
-        private Solidness m_solidness = Solidness.HARD;
-        private bool m_no_soft = false;
+        
+        private string m_type;
 
+        private Vector m_position = new Vector();
+        private Vector m_direction = new Vector();
+
+        private float m_speed = 0;
+
+        private bool m_no_soft = false;
         private bool is_active = true;
         private bool is_visible = true;
 
+        private Solidness m_solidness = Solidness.HARD;
 
         public int Id { get { return m_id; } set { m_id = value; } }
+        public int Altitude { get { return m_altitude; } set { m_altitude = value; } }
 
         public string Type { get { return m_type; } set { m_type = value; } }
 
         public Vector Position { get { return m_position; } set { m_position = value; } }
-
-        public int Altitude { get { return m_altitude; } set { m_altitude = value; } }
         public Vector Direction { get { return m_direction; } set { m_direction = value; } }
+
 
         public float Speed { get { return m_speed; } set { m_speed = value; } }
 
-        public Solidness NeedsANewName { get { return m_solidness; } set { m_solidness = value; } } //Name required.
 
         public bool Softness { get { return m_no_soft; } set { m_no_soft = value; } }
-
         public bool Active { get { return is_active; } set { is_active = value; } }
         public bool Visible { get { return is_visible; } set { is_visible = value; } }
+
+        public Solidness NeedsANewName { get { return m_solidness; } set { m_solidness = value; } } //Name required.
 
         public Vector Velocity
         {
@@ -80,6 +83,27 @@ namespace RayLibEngine.Core
             return false;
 
         }
+
+        public static bool operator ==(GameObject a, GameObject b)
+        {
+            if(a is null)
+            {
+                return b is null;
+            }
+            return a.Equals(b);
+        }
+        public static bool operator !=(GameObject a, GameObject b)
+        {
+            if(a is null)
+            {
+                return b is not null;
+            }
+            return !a.Equals(b);
+        }
+
+        public bool Equals(GameObject? other) => other is not null && other == this;
+
+        public override bool Equals(object? obj) => Equals(obj as GameObject);
 
 
 

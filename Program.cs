@@ -32,6 +32,13 @@ internal static class Program
 
         WriteLog($"Vector2 component ({test2.x}, {test2.y})");
 
+        GameObject item = new GameObject();
+
+        ObjectList<GameObject> items = new ObjectList<GameObject>();
+
+        items.Insert(item);
+
+        Console.WriteLine($"ObjectList should have 1 Object in it and should not be empty: {items.isEmpty}");
         
 
 
