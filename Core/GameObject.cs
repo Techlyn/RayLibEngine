@@ -14,7 +14,7 @@ namespace RayLibEngine.Core
         SPECTRAL
     }
 
-    internal class GameObject
+    public class GameObject
     {
         private static int id_count = 0;
 
@@ -92,16 +92,15 @@ namespace RayLibEngine.Core
             }
             return a.Equals(b);
         }
-        public static bool operator !=(GameObject a, GameObject b)
-        {
-            if(a is null)
-            {
-                return b is not null;
-            }
-            return !a.Equals(b);
-        }
+        public static bool operator !=(GameObject a, GameObject b) => !(a == b);
+        
 
-        public bool Equals(GameObject? other) => other is not null && other == this;
+        public bool Equals(GameObject? other)
+        {
+            if (ReferenceEquals(this.Id, other.Id)) return true;
+            if (this is null || other is null) return false;
+            return this.Id == other.Id;
+        }
 
         public override bool Equals(object? obj) => Equals(obj as GameObject);
 

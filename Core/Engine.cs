@@ -17,33 +17,45 @@ static class Engine
     private static double accumulator = 0;
     private static int updateCount = 0;
     private static int renderCount = 0;
+    private static bool _gameOver = false;
 
+
+    public static void StartUp()
+    {
+        DisplayManager.StartUp();
+    }
 
     public static void Run()
     {
         Clock clock = new Clock();
 
-      
 
-        int timeElapsed = 20;
-        while (clock.TotalTime < timeElapsed)
+
+
+        while (!_gameOver)
         {
             clock.Tick();
             double dt = clock.DeltaTime;
 
             if (dt > 0.1) dt = 0.1; // dt cap
 
-            TestUpdate(dt);
-            TestRender();
+            Update(dt);
+            Render();
+
+            if (DisplayManager.ShouldClose())
+            {
+                _gameOver = true;
+            }
 
         }
-        WriteLog(LogLevel.LOG_DEBUG, $"Time Elapsed: {clock.TotalTime} Frame updates: {updateCount}");
-        WriteLog(LogLevel.LOG_DEBUG, $"Time Elapsed: {clock.TotalTime} Frame renders: {renderCount}");
+
+
+
 
     }
 
 
-    private static void TestUpdate(double deltaTime)
+    private static void Update(double deltaTime)
     {
         
 
@@ -51,15 +63,19 @@ static class Engine
 
         while (accumulator >= fixedDeltaTime)
         {
-            updateCount++;
+
+            // Here is where all the update processes go
             accumulator -= fixedDeltaTime;
         } 
 
     }
 
-    private static void TestRender()
+    private static void Render()
     {
-        renderCount++;
+        //Not sure if Rendering will work like this while update is before, whether
+        // update should happen before BeginDrawing or after. Will test both.
+        DisplayManager.BeginDrawing();
+        DisplayManager.EndDrawing();
     }
 
 

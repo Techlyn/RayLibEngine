@@ -118,6 +118,8 @@ static class Logger
 
         string filePath = path + Path.DirectorySeparatorChar + LOGFILE_NAME;
 
+        if (!File.Exists(path)) { Console.WriteLine("Logger Path not inititated, make sure to use Logger.StartUp()"); return; }
+            
         File.AppendAllLines(filePath, new List<string>() { message });
 
     }
@@ -150,13 +152,22 @@ static class Logger
     private static string LogPathSetter()
     {
         string path = Directory.GetCurrentDirectory();
-        string append = "\\log";
+        string append = $"{Path.DirectorySeparatorChar}log";
         string target = path + append;
 
         if (!Directory.Exists(target))
         {
             Console.WriteLine($"Attempting to create Directory at {target}");
-            Directory.CreateDirectory(target);
+            try
+            {
+                Directory.CreateDirectory(target);
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine($"{e}, Directory Creation Failed");
+                throw;
+            }
+            
         }
 
         Console.WriteLine($"Target Set at {target}");
