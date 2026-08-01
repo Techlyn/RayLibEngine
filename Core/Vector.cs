@@ -64,16 +64,8 @@
             return a.Equals(b);
         }
 
-        public static bool operator !=(Vector a, Vector b)
-        {
-            if (a is null)
-            {
-                return b is not null;
-            }
-            return !a.Equals(b);
-        }
-
-        public bool Equals(Vector? other) => other is not null && other == this;
+        public static bool operator !=(Vector a, Vector b) => !(a == b);
+        public bool Equals(Vector? other) => other is not null && other.x == x && other.y == y;
         public override bool Equals(object? obj) => Equals(obj as Vector);
 
 

@@ -34,6 +34,12 @@ namespace RayLibEngine.Core
 
         private Solidness m_solidness = Solidness.HARD;
 
+        public GameObject()
+        {
+            m_type = "";
+            WorldGenerator.InsertGameObject(this);
+        }
+
         public int Id { get { return m_id; } set { m_id = value; } }
         public int Altitude { get { return m_altitude; } set { m_altitude = value; } }
 
@@ -51,6 +57,8 @@ namespace RayLibEngine.Core
         public bool Visible { get { return is_visible; } set { is_visible = value; } }
 
         public Solidness NeedsANewName { get { return m_solidness; } set { m_solidness = value; } } //Name required.
+
+        public virtual void Draw() { return; }
 
         public Vector Velocity
         {

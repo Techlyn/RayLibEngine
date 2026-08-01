@@ -15,7 +15,7 @@ namespace RayLibEngine.Core
 
         public static void Update()
         {
-            for(int i = 0; i < _updates.Count; i++)
+            for (int i = 0; i < _updates.Count; i++)
             {
                 Vector new_pos = _updates[i].PredictPosition();
                 if (new_pos != _updates[i].Position)
@@ -29,12 +29,11 @@ namespace RayLibEngine.Core
 
         public static void InsertGameObject(GameObject obj)
         {
-            foreach(GameObject child in _updates)
-            {
-                if (child != obj) _updates.Add(obj);
-            }
-            WriteLog(LogLevel.LOG_WARNING, "Attempting to add Object already in updates list");
-            
+           
+            if (!_updates.Any(child => obj == child)) _updates.Add(obj);
+            else
+                WriteLog(LogLevel.LOG_WARNING, "Attempting to add Object already in updates list");
+
         }
 
         private static void MoveGameObject(GameObject obj, Vector new_pos)
@@ -47,7 +46,7 @@ namespace RayLibEngine.Core
             List<GameObject> list = new List<GameObject>();
             foreach (GameObject obj in _updates)
             {
-                if(obj.Type == type)
+                if (obj.Type == type)
                 {
                     list.Add(obj);
                 }
@@ -55,14 +54,14 @@ namespace RayLibEngine.Core
             return list;
         }
 
-        public static List<GameObject> AllObjects() 
+        public static List<GameObject> AllObjects()
         {
             return _updates;
         }
 
         public static bool MarkForDelete(GameObject obj)
         {
-            for(int i = 0; i < _updates.Count; i++)
+            for (int i = 0; i < _updates.Count; i++)
             {
                 if (_updates[i] == obj)
                 {
@@ -74,10 +73,23 @@ namespace RayLibEngine.Core
             return false;
         }
 
+        public static void MoveObject(GameObject obj, Vector new_pos)
+        {
+            obj.Position = new_pos;
+        }
+
+        public static void Draw()
+        {
+            foreach (GameObject obj in _updates)
+            {
+                obj.Draw();
+            }
+        }
+
     }
 
 
-    
+
 
 
 }

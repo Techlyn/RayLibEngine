@@ -15,9 +15,9 @@ static class Engine
 
 
     private static double accumulator = 0;
-    private static int updateCount = 0;
-    private static int renderCount = 0;
+
     private static bool _gameOver = false;
+    private static long _count = 0;
 
 
     public static void StartUp()
@@ -30,6 +30,7 @@ static class Engine
     public static void Run()
     {
         Clock clock = new Clock();
+        
 
 
 
@@ -41,6 +42,7 @@ static class Engine
 
             if (dt > 0.1) dt = 0.1; // dt cap
 
+            
             Update(dt);
             Render();
 
@@ -48,6 +50,7 @@ static class Engine
             {
                 _gameOver = true;
             }
+            _count++;
 
         }
 
@@ -67,9 +70,11 @@ static class Engine
 
         while (accumulator >= fixedDeltaTime)
         {
+            EventStep es = new EventStep();
+            es.StepCount = _count;
+            Core.EventHandler.OnEvent(es);
 
-            // Here is where all the update processes go
-            
+            WorldGenerator.Update();
 
             accumulator -= fixedDeltaTime;
         } 
@@ -81,6 +86,7 @@ static class Engine
         //Not sure if Rendering will work like this while update is before, whether
         // update should happen before BeginDrawing or after. Will test both.
         DisplayManager.BeginDrawing();
+        WorldGenerator.Draw();
         DisplayManager.EndDrawing();
         //DisplayManager.BufferSwap();
     }
