@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static RayLibEngine.Core.EventKeyboardAction;
+
 
 namespace RayLibEngine.Core
 {
@@ -15,28 +17,27 @@ namespace RayLibEngine.Core
 
         public override void ObjectEvent(Event _event)
         {
-            if(_event.Type == KeyboardEvent.KEYBOARD_EVENT)
+            if (_event.Type == KeyboardEvent.KEYBOARD_EVENT)
             {
                 KeyboardEvent keyboard_event = (KeyboardEvent)_event;
-                kbd(keyboard_event) ;
+                kbd(keyboard_event);
                 return;
             }
-            
+
         }
 
         private void kbd(KeyboardEvent keyboard_event)
         {
-            if(keyboard_event.KeyValue == Keyboard.Key.W)
+
+            if (keyboard_event.KeyboardAction == KEY_PRESSED)
             {
-                if(keyboard_event.KeyboardAction == EventKeyboardAction.KEY_PRESSED)
-                {
-                    Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Pressed.");
-                }
-                if (keyboard_event.KeyboardAction == EventKeyboardAction.KEY_RELEASED)
-                {
-                    Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Released.");
-                }
+                Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Pressed.");
             }
+            if (keyboard_event.KeyboardAction == KEY_RELEASED)
+            {
+                Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Released.");
+            }
+
         }
     }
 }

@@ -167,6 +167,26 @@ public static class InputCollector
                 return Keyboard.Key.Y;
             case KeyboardKey.Z:
                 return Keyboard.Key.Z;
+            case KeyboardKey.One:
+                return Keyboard.Key.ONE;
+            case KeyboardKey.Two:
+                return Keyboard.Key.TWO;
+            case KeyboardKey.Three:
+                return Keyboard.Key.THREE;
+            case KeyboardKey.Four:
+                return Keyboard.Key.FOUR;
+            case KeyboardKey.Five:
+                return Keyboard.Key.FIVE;
+            case KeyboardKey.Six:
+                return Keyboard.Key.SIX;
+            case KeyboardKey.Seven:
+                return Keyboard.Key.SEVEN;
+            case KeyboardKey.Eight:
+                return Keyboard.Key.EIGHT;
+            case Keyboard.Key.Nine:
+                return Keyboard.Key.NINE;
+            case KeyboardKey.Zero:
+                return Keyboard.Key.ZERO;
             case KeyboardKey.Kp1:
                 return Keyboard.Key.NUM1;
             case KeyboardKey.Kp2:
