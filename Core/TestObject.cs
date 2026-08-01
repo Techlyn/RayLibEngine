@@ -33,10 +33,7 @@ namespace RayLibEngine.Core
             {
                 Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Pressed.");
             }
-            if (keyboard_event.KeyboardAction == KEY_RELEASED)
-            {
-                Console.WriteLine($"Keyboard Key '{keyboard_event.KeyValue}' Was Released.");
-            }
+           
 
         }
     }

@@ -23,6 +23,7 @@ static class Engine
     public static void StartUp()
     {
         DisplayManager.StartUp();
+        
         TestObject test = new TestObject();
     }
 

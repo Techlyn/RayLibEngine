@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RayLibEngine.Core;
 
@@ -6,9 +7,13 @@ public static class InputCollector
 {
     private static bool[] previousKeyState = new bool[512];
 
+    static InputCollector()
+    {
+        Raylib.SetExitKey(KeyboardKey.Null);
+    }
+
     public static void KeyboardInput()
     {
-
 
         int key = Raylib.GetKeyPressed();
         while (key != 0)
@@ -91,6 +96,10 @@ public static class InputCollector
                 return Keyboard.Key.LSHIFT;
             case KeyboardKey.RightShift:
                 return Keyboard.Key.RSHIFT;
+            case KeyboardKey.LeftAlt:
+                return Keyboard.Key.LALT;
+            case KeyboardKey.RightAlt:
+                return Keyboard.Key.RALT;
             case KeyboardKey.F1:
                 return Keyboard.Key.F1;
             case KeyboardKey.F2:
@@ -183,7 +192,7 @@ public static class InputCollector
                 return Keyboard.Key.SEVEN;
             case KeyboardKey.Eight:
                 return Keyboard.Key.EIGHT;
-            case Keyboard.Key.Nine:
+            case KeyboardKey.Nine:
                 return Keyboard.Key.NINE;
             case KeyboardKey.Zero:
                 return Keyboard.Key.ZERO;
@@ -208,7 +217,6 @@ public static class InputCollector
             case KeyboardKey.Kp0:
                 return Keyboard.Key.NUM0;
             default:
-                Logger.WriteLog(LogLevel.LOG_WARNING, "Error! Undefined key pressed key code is: {key}, refer to Raylib.KeyboardKey");
                 break;
         }
         return Keyboard.Key.UNDEFINED_KEY;
