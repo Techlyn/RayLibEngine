@@ -54,10 +54,12 @@ static class Engine
 
     }
 
+    
+
 
     private static void Update(double deltaTime)
     {
-        
+        InputCollector.GetKeyboardInput();
 
         accumulator += deltaTime;
 
@@ -65,6 +67,8 @@ static class Engine
         {
 
             // Here is where all the update processes go
+            
+
             accumulator -= fixedDeltaTime;
         } 
 
@@ -76,6 +80,7 @@ static class Engine
         // update should happen before BeginDrawing or after. Will test both.
         DisplayManager.BeginDrawing();
         DisplayManager.EndDrawing();
+        //DisplayManager.BufferSwap();
     }
 
 

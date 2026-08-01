@@ -50,6 +50,12 @@ namespace RayLibEngine.Core
             
 
         }
+
+        public static void BufferSwap()
+        {
+            Raylib.SwapScreenBuffer();
+            Raylib.ClearBackground(_backgroundColor);
+        }
         
 
         public static int HorizontalPixels { get { return _windowHozPixel; } set { _windowHozPixel = value; } }
@@ -57,7 +63,7 @@ namespace RayLibEngine.Core
         public static Color BackgroundColor { get { return _backgroundColor; } set { _backgroundColor = value; } }
         public static string WindowTitle { get { return _windowTitle; } set { _windowTitle = value; } }
 
-
+        
 
 
     }

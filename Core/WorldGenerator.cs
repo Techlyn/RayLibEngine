@@ -55,6 +55,11 @@ namespace RayLibEngine.Core
             return list;
         }
 
+        public static List<GameObject> AllObjects() 
+        {
+            return _updates;
+        }
+
         public static bool MarkForDelete(GameObject obj)
         {
             for(int i = 0; i < _updates.Count; i++)

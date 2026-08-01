@@ -49,24 +49,6 @@ internal static class Program
         WriteLog($"Vector2 component ({test2.x}, {test2.y})");
     }
 
-    static void ObjectListTest()
-    {
-        GameObject item = new GameObject();
-
-        ObjectList<GameObject> items = new ObjectList<GameObject>();
-
-        items.Insert(item);
-
-        Console.WriteLine($"ObjectList should have 1 Object in it and should not be empty: {items.isEmpty}");
-        Console.WriteLine($"Number of objects in list is: {items.ObjectCount}");
-
-        items.Remove(item);
-
-        Console.WriteLine($"ObjectList should now be empty: {items.isEmpty}");
-        Console.WriteLine($"Number in list is: {items.ObjectCount}");
-    }
-
-
     static void ListIndexChangeTest()
     {
         List<int> list = new() { 1, 2, 3, 4, 5, 6 };
