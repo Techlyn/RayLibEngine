@@ -10,7 +10,9 @@ namespace RayLibEngine.Core
 
         private static Dictionary<String, List<GameObject>> _ObjectDictionary = new Dictionary<String, List<GameObject>>();
 
-        public int OnEvent(Event _event)
+         
+
+        public static int OnEvent(Event _event)
         { 
             if (_ObjectDictionary.ContainsKey(_event.Type))
             {
@@ -18,11 +20,13 @@ namespace RayLibEngine.Core
                 {
                     if (obj.Active)
                     {
-                        obj.eventHandler(_event); // not sure if I'll name this called object method eventHandler, as this class is called EventHandler.
-                                                  // who knew naming would be so hard.
+                        obj.ObjectEvent(_event); // not sure if I'll name this called object method eventHandler, as this class is called EventHandler.
+                        // who knew naming would be so hard.
+                        return 0;
                     }
                 }
             }
+            return 1;
         }
 
 

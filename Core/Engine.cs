@@ -23,6 +23,7 @@ static class Engine
     public static void StartUp()
     {
         DisplayManager.StartUp();
+        TestObject test = new TestObject();
     }
 
     public static void Run()
@@ -59,7 +60,7 @@ static class Engine
 
     private static void Update(double deltaTime)
     {
-        InputCollector.GetKeyboardInput();
+        InputCollector.KeyboardInput();
 
         accumulator += deltaTime;
 
@@ -82,6 +83,8 @@ static class Engine
         DisplayManager.EndDrawing();
         //DisplayManager.BufferSwap();
     }
+
+  
 
 
 }

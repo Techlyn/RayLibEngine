@@ -102,6 +102,11 @@ namespace RayLibEngine.Core
             return this.Id == other.Id;
         }
 
+        public virtual void ObjectEvent(Event _event)
+        {
+            return;
+        }
+
         public override bool Equals(object? obj) => Equals(obj as GameObject);
 
 
